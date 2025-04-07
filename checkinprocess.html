@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Truck Driver Check-In</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      line-height: 1.6;
+    }
+    #translate-container {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 9999;
+      background: white;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding-top: 50px;
+    }
+    h1 {
+      color: #2E86C1;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .note {
+      font-size: 0.9em;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Translate Dropdown -->
+  <div id="translate-container">
+    <span>Select Language: </span>
+    <div id="google_translate_element"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>Driver Check-In Process</h1>
+    
+    <p>Welcome to our distribution center. Please follow the steps below to complete your check-in:</p>
+
+    <ul>
+      <li>Enter through Gate A and stop at the Security Booth.</li>
+      <li>Show your ID and Bill of Lading to the guard.</li>
+      <li>You will be assigned a dock number.</li>
+      <li>Proceed to the assigned dock and wait for instructions.</li>
+      <li>Stay in your truck unless otherwise directed.</li>
+      <li>Once unloading/loading is complete, return to the booth for your paperwork.</li>
+    </ul>
+
+    <p class="note">For assistance, contact the yard supervisor at extension 105.</p>
+  </div>
+
+  <!-- Google Translate Widget -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,es,fr,de,pl,ru,it,pt,zh-CN,ar',
+        layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+      }, 'google_translate_element');
+    }
+  </script>
+
+  <script type="text/javascript" 
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+  </script>
+
+</body>
+</html>
