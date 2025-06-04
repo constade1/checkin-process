@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Truck Driver Check-In</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 30px;
-      line-height: 1.6;
+      margin: 20px;
+      line-height: 1.8;
+      font-size: 20px;
     }
     #translate-container {
       position: fixed;
@@ -20,19 +22,45 @@
       border-radius: 5px;
     }
     .container {
-      max-width: 600px;
+      max-width: 700px;
       margin: auto;
-      padding-top: 50px;
+      padding-top: 30px;
+      text-align: center;
     }
     h1 {
-      color: #2E86C1;
+      color: #BA0018;
     }
-    ul {
+    h2 {
+      color: #BA0018;
+      font-weight: normal;
+    }
+    ol, ul {
+      text-align: left;
       padding-left: 20px;
     }
-    .note {
-      font-size: 0.9em;
-      color: gray;
+    .btn {
+      background-color: #BA0018;
+      color: white;
+      padding: 12px 25px;
+      margin: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .btn:hover {
+      opacity: 0.9;
+    }
+    .logo-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .logo-container img {
+      max-width: 100%;
+      width: 300px;
+      height: auto;
     }
   </style>
 </head>
@@ -44,22 +72,104 @@
     <div id="google_translate_element"></div>
   </div>
 
+  <!-- Logo -->
+  <div class="logo-container">
+    <img src="https://srclm.com/wp-content/uploads/2020/10/CAMPBELL_SNACKS-Logo.png" alt="Campbell's Snacks Logo">
+  </div>
+
   <!-- Main Content -->
   <div class="container">
-    <h1>Driver Check-In Process</h1>
-    
-    <p>Welcome to our distribution center. Please follow the steps below to complete your check-in:</p>
+    <div id="start-screen">
+      <h1>Welcome to the Indianapolis Mixing Center</h1>
+      <h2>Please select your delivery type:</h2>
+      <button class="btn" onclick="showProcess('inbound')">Inbound</button>
+      <button class="btn" onclick="showProcess('outbound')">Outbound</button>
+    </div>
 
-    <ul>
-      <li>Enter through Gate A and stop at the Security Booth.</li>
-      <li>Show your ID and Bill of Lading to the guard.</li>
-      <li>You will be assigned a dock number.</li>
-      <li>Proceed to the assigned dock and wait for instructions.</li>
-      <li>Stay in your truck unless otherwise directed.</li>
-      <li>Once unloading/loading is complete, return to the booth for your paperwork.</li>
-    </ul>
+    <div id="inbound-process" style="display: none;">
+      <h1>Inbound Driver Check-In</h1>
+      <ol>
+        <li><strong>Enter the Facility:</strong>  
+          <ul>
+            <li>Enter through the main gate and drive around to the <strong>Receiving Door</strong>.</li>
+          </ul>
+        </li>
+        <li><strong>Be Prepared to Check In:</strong>  
+          <ul>
+            <li>Bring <strong>two original signed copies</strong> of your Bill of Lading (no photocopies).</li>
+            <li>Ensure your <strong>seal number matches the BOL</strong> and the <strong>trailer number</strong> also matches.</li>
+            <li>Make sure you arrive <strong>on time</strong> for your scheduled appointment.</li>
+          </ul>
+        </li>
+        <li><strong>Appointment Rules:</strong>
+          <ul>
+            <li><strong>Drop loads</strong> may check in <strong>24 hours in advance.</strong></li>
+            <li><strong>Live loads</strong> may check in <strong>12 hours in advance.</strong></li>
+            <li>These timeframes are strict — <strong>no exceptions.</strong></li>
+          </ul>
+        </li>
+        <li><strong>If You’re Not Scheduled:</strong>
+          <ul>
+            <li>If you’re not in our system, we will ask you to contact your dispatch.</li>
+            <li>You must be scheduled through <strong>Transplace</strong> or by posting a <strong>PGI (Post Goods Issue)</strong>.</li>
+          </ul>
+        </li>
+        <li><strong>Professional Conduct:</strong>
+          <ul>
+            <li>Please be respectful and patient — some days are busier than others.</li>
+            <li>If you are late, we will try to work you in as soon as possible, but <strong>we must honor scheduled appointments</strong>.</li>
+            <li>If time is an issue, contact dispatch to reschedule.</li>
+          </ul>
+        </li>
+      </ol>
+      <button class="btn" onclick="goBack()">Back</button>
+    </div>
 
-    <p class="note">For assistance, contact the yard supervisor at extension 105.</p>
+    <div id="outbound-process" style="display: none;">
+      <h1>Outbound Driver Check-In</h1>
+      <ol>
+        <li><strong>Prepare to Check In:</strong>
+          <ul>
+            <li>Pick-up number (450, 0100, 904, or 905)</li>
+            <li>Carrier name</li>
+            <li>Trailer number</li>
+            <li>Phone number</li>
+            <li>Delivery city</li>
+            <li>Company you drive for</li>
+          </ul>
+        </li>
+        <li><strong>Prepare Your Trailer:</strong>
+          <ul>
+            <li>Slide tandems to the back</li>
+            <li>Open trailer doors</li>
+            <li>Place a load strap at the rear</li>
+            <li>Disconnect air lines</li>
+          </ul>
+        </li>
+        <li><strong>Wait for Loading Signal:</strong>
+          <ul>
+            <li><strong>RED LIGHT</strong> = We are loading you</li>
+            <li><strong>GREEN LIGHT</strong> = Loading is complete</li>
+          </ul>
+        </li>
+        <li><strong>After Loading:</strong>
+          <ul>
+            <li>Drive to the white box</li>
+            <li>Come inside the Shipping Office</li>
+            <li>Bring your driver’s license</li>
+            <li>Sign your BOLs (Bill of Lading)</li>
+          </ul>
+        </li>
+        <li><strong>Final Trailer Check:</strong>
+          <ul>
+            <li>We will inspect your trailer</li>
+            <li>We’ll place the packing slip in the back</li>
+            <li>We will seal your trailer</li>
+          </ul>
+        </li>
+      </ol>
+      <button class="btn" onclick="goBack()">Back</button>
+    </div>
   </div>
 
   <!-- Google Translate Widget -->
@@ -70,6 +180,18 @@
         includedLanguages: 'en,es,fr,de,pl,ru,it,pt,zh-CN,ar',
         layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
       }, 'google_translate_element');
+    }
+
+    function showProcess(type) {
+      document.getElementById('start-screen').style.display = 'none';
+      document.getElementById('inbound-process').style.display = (type === 'inbound') ? 'block' : 'none';
+      document.getElementById('outbound-process').style.display = (type === 'outbound') ? 'block' : 'none';
+    }
+
+    function goBack() {
+      document.getElementById('inbound-process').style.display = 'none';
+      document.getElementById('outbound-process').style.display = 'none';
+      document.getElementById('start-screen').style.display = 'block';
     }
   </script>
 
