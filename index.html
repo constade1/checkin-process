@@ -20,11 +20,12 @@
       padding: 5px 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     .container {
       max-width: 700px;
       margin: auto;
-      padding-top: 30px;
+      padding-top: 120px; /* push content below translate box */
       text-align: center;
     }
     h1 {
@@ -177,7 +178,7 @@
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'en',
-        includedLanguages: 'en,es,fr,de,pl,ru,it,pt,zh-CN,ar',
+        includedLanguages: 'en,es,fr,de,pl,ru,it,pt,zh-CN,ar,tr,hi,ko,vi,uk',
         layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
       }, 'google_translate_element');
     }
